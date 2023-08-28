@@ -25,6 +25,18 @@ func NewConvertLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ConvertLo
 
 func (l *ConvertLogic) Convert(req *types.ConvertRequest) (resp *types.ConvertResponse, err error) {
 	// todo: add your logic here and delete this line
+	// 1. validator
+	// not nil, invalid log url, check if already convert(query from database), input can not be a short url
+	
+
+
+
+	
+	// 2. generate
+
+	// 3. convert
+
+	// 4. store
 
 	return
 }
