@@ -3,13 +3,15 @@ Host: 0.0.0.0
 Port: 8888
 
 ShortUrlDB:
-  DSN: root:Zy_9908091729@tcp(127.0.0.1:3306)/shortener?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DSN: root:root1234@tcp(127.0.0.1:9306)/shortener?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  # DSN: root:Zy_9908091729@tcp(127.0.0.1:3306)/shortener?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 
 Sequence:
-  DSN: root:Zy_9908091729@tcp(127.0.0.1:3306)/shortener?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DSN: root:root1234@tcp(127.0.0.1:9306)/shortener?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  # DSN: root:Zy_9908091729@tcp(127.0.0.1:3306)/shortener?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 
 CacheRedis:
-  - Host: 127.0.0.1:6379
+  - Host: 127.0.0.1:9379
 
 
 
