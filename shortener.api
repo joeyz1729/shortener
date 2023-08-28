@@ -9,7 +9,7 @@ type ConvertResponse {
 }
 
 type ShowRequest {
-	ShortUrl string `json:"shortUrl"`
+	ShortUrl string `path:"shortUrl"`
 }
 
 type ShowResponse {

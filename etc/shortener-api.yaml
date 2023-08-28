@@ -8,6 +8,10 @@ ShortUrlDB:
 Sequence:
   DSN: root:Zy_9908091729@tcp(127.0.0.1:3306)/shortener?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 
+CacheRedis:
+  - Host: 127.0.0.1:6379
+
+
 
 BaseString: J0rs12O5TUV8IW7D9aBdXeCfghiMQj3klmop6qtuvbcwx4zAEFGHKLNnPRYSZy
 

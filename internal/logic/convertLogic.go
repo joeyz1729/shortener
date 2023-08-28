@@ -45,6 +45,12 @@ func (l *ConvertLogic) Convert(req *types.ConvertRequest) (resp *types.ConvertRe
 	u, err := l.svcCtx.ShortUrlMapModel.FindOneByMd5(l.ctx, sql.NullString{String: md5Val, Valid: true})
 	if err != sqlx.ErrNotFound {
 		if err == nil {
+			if err := l.svcCtx.Filter.Add([]byte(u.Surl.String)); err != nil {
+				logx.Errorw("add short url into bloom filter failed",
+					logx.Field("err", err),
+				)
+				return nil, err
+			}
 			return nil, fmt.Errorf("already convert: %s", u.Surl.String)
 		}
 		logx.Errorw("find one by md5 failed",
@@ -100,6 +106,12 @@ func (l *ConvertLogic) Convert(req *types.ConvertRequest) (resp *types.ConvertRe
 	}
 
 	// 4. store
+	if err := l.svcCtx.Filter.Add([]byte(short)); err != nil {
+		logx.Errorw("add short url into bloom filter failed",
+			logx.Field("err", err),
+		)
+		return nil, err
+	}
 	_, err = l.svcCtx.ShortUrlMapModel.Insert(l.ctx, &model.ShortUrlMap{
 		Lurl: sql.NullString{String: req.LongUrl, Valid: true},
 		Surl: sql.NullString{String: short, Valid: true},
@@ -111,6 +123,7 @@ func (l *ConvertLogic) Convert(req *types.ConvertRequest) (resp *types.ConvertRe
 		)
 		return nil, err
 	}
+	
 
 	resp = new(types.ConvertResponse)
 	resp.ShortUrl = l.svcCtx.Config.ShortDomain + "/" + short

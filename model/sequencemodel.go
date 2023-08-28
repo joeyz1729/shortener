@@ -1,6 +1,9 @@
 package model
 
-import "github.com/zeromicro/go-zero/core/stores/sqlx"
+import (
+	"github.com/zeromicro/go-zero/core/stores/cache"
+	"github.com/zeromicro/go-zero/core/stores/sqlx"
+)
 
 var _ SequenceModel = (*customSequenceModel)(nil)
 
@@ -17,8 +20,8 @@ type (
 )
 
 // NewSequenceModel returns a model for the database table.
-func NewSequenceModel(conn sqlx.SqlConn) SequenceModel {
+func NewSequenceModel(conn sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option) SequenceModel {
 	return &customSequenceModel{
-		defaultSequenceModel: newSequenceModel(conn),
+		defaultSequenceModel: newSequenceModel(conn, c, opts...),
 	}
 }
