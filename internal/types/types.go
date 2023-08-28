@@ -2,7 +2,7 @@
 package types
 
 type ConvertRequest struct {
-	LongUrl string `json:"longUrl"`
+	LongUrl string `json:"longUrl" validate:"required"`
 }
 
 type ConvertResponse struct {
